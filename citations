@@ -1,0 +1,7 @@
+@software{zincbase,
+  author = {{Tom Grek}},
+  title = {ZincBase: A state of the art knowledge base},
+  url = {https://github.com/tomgrek/zincbase},
+  version = {0.1.1},
+  date = {2019-05-12}
+}
