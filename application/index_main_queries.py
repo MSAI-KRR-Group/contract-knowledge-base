@@ -11,7 +11,10 @@ from knowledge_base.kb_license_query import repository_conditions
 
 def query_kb(sidebar_selection):
     # Display a header to describe stuff contained in this funciton
-    st.header(f'Looking up {sidebar_selection}')
+    if sidebar_selection == 'I have a repository':
+        st.header(f'Looking up your repository, {sidebar_selection}')
+    else:
+        st.header(f'Looking up {sidebar_selection}')
 
     if sidebar_selection == 'Everything!':
         # enable a set of queries to get general information
