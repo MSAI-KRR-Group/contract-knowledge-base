@@ -94,27 +94,47 @@ def license_rights(license_type):
     # print()
 
 #TODO: How to implement a workflow of queries based on repository? Can we link back to actual repo?
-def repository_license():
+def repository_license(repo_name='<github_repo>'):
+    search_term = 'License'
+    results = list(kb_license.query(f'licenseOf({repo_name}, {search_term})'))
+    return [sub[search_term] for sub in results]
+
+    # example of how this works
     # What is the license of a repository?
-    print('=== What is the license of a repository?')
-    print(list(kb_license.query('licenseOf(<github_repo>, License)')))
-    print()
+    # print('=== What is the license of a repository?')
+    # print(list(kb_license.query(f'licenseOf(<github_repo>, License)')))
+    # print()
 
-def repository_terms_conditions():
+def repository_terms_conditions(repo_name='<github_repo>'):
+    search_term = 'TermsAndConditions'
+    results = list(kb_license.query(f'repositoryTermsConditions({repo_name}, {search_term})'))
+    return [sub[search_term] for sub in results]
+
+    # example of how this works
     # What are ALL the terms and conditions a repository's license?
-    print('=== What are the terms and conditions a repository\'s license?')
-    print(list(kb_license.query('repositoryTermsConditions(<github_repo>, TermsAndConditions)')))
-    print()
+    # print('=== What are the terms and conditions a repository\'s license?')
+    # print(list(kb_license.query('repositoryTermsConditions(<github_repo>, TermsAndConditions)')))
+    # print()
 
-def repository_rights():
+def repository_rights(repo_name='<github_repo>'):
+    search_term = 'RepositoryRights'
+    results = list(kb_license.query(f'repositoryRights({repo_name}, {search_term})'))
+    return [sub[search_term] for sub in results]
+
+    # example of how this works
     # What rights (ONLY) are extended by a repository?
-    print('=== What rights (ONLY) are extended by a repository?')
-    print(list(kb_license.query('repositoryRights(<github_repo>, RepositoryRights)')))
-    print()
+    # print('=== What rights (ONLY) are extended by a repository?')
+    # print(list(kb_license.query('repositoryRights(<github_repo>, RepositoryRights)')))
+    # print()
 
-def repository_conditions():
+def repository_conditions(repo_name='<github_repo>'):
+    search_term = 'RepositoryConditions'
+    results = list(kb_license.query(f'repositoryConditions({repo_name}, {search_term})'))
+    return [sub[search_term] for sub in results]
+
+    # example of how this works
     # What conditions (ONLY) are extended by a repository?
-    print('=== What conditions (ONLY) are extended by a repository?')
-    print(list(kb_license.query('repositoryConditions(<github_repo>, RepositoryConditions)')))
-    print()
+    # print('=== What conditions (ONLY) are extended by a repository?')
+    # print(list(kb_license.query('repositoryConditions(<github_repo>, RepositoryConditions)')))
+    # print()
 
