@@ -4,6 +4,7 @@ from application.index_main_queries import query_kb
 
 class Application():
     def __init__(self):
+        # the text that displays in the tab at the very top of the page
         st.set_page_config(page_title='Contract Companion')
 
     def run_app(self):
@@ -35,10 +36,10 @@ class Application():
 
 
     def footer(self):
+        # make st calls for footer section here
         st.markdown(
             '<i style="font-size:11px">Version Alpha</i>',
             unsafe_allow_html=True)
-
         st.markdown(
             '<i style="font-size:11px">&copy All Rights Reserved [The Project Group](https://github.com/MSAI-KRR-Group)</i>',
             unsafe_allow_html=True)
