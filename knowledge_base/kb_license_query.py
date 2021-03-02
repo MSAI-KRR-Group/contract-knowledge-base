@@ -1,24 +1,24 @@
+# Make queries HERE
+
 from knowledge_base.kb_license_store import *
 
-# What are ALL the terms and conditions a license?
-
 def all_terms_conditions(license_type):
-        search_term = 'TermsAndConditions'
-        results = list(kb_license.query(f'extends({license_type}, {search_term})'))
-        return [sub[search_term] for sub in results]
+    # What are ALL the terms and conditions a license?
+    search_term = 'TermsAndConditions'
+    results = list(kb_license.query(f'extends({license_type}, {search_term})'))
+    return [sub[search_term] for sub in results]
 
-    # if license_type == 'GNU GPL 3.0':
-    #     selection = 'gnu_license'
 
+    # examples of how this works
     # print('=== What are all the terms and conditions that a license-type can extend?')
     # print('gnu_license')
-    #
     # print(list(kb_license.query('extends(gnu_license, TermsAndConditions)')))
     # print(list(kb_license.query('extends(mit_license, TermsAndConditions)')))
     # print(list(kb_license.query('extends(merchantability_license, TermsAndConditions)')))
     # print(list(kb_license.query('extends(guarantee_license, TermsAndConditions)')))
     # print()
 
+#TODO, finish building the app to call of the rest of these queries
 def conditions_types_all():
     # What are the conditions of a license?
     print('=== What are all the possible types of license conditions?')

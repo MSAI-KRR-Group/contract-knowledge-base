@@ -1,3 +1,5 @@
+# STORE queries HERE
+
 from knowledge_base.config import kb_license
 
 # the primary owner of the project as a licensor
