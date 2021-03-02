@@ -3,12 +3,13 @@
 from knowledge_base.kb_license_store import *
 
 def all_terms_conditions(license_type):
-    # What are ALL the terms and conditions a license?
+    # return all terms and conditions of a license
     search_term = 'TermsAndConditions'
     results = list(kb_license.query(f'extends({license_type}, {search_term})'))
     return [sub[search_term] for sub in results]
 
     # examples of how this works
+    # What are ALL the terms and conditions a license?
     # print('=== What are all the terms and conditions that a license-type can extend?')
     # print('gnu_license')
     # print(list(kb_license.query('extends(gnu_license, TermsAndConditions)')))
@@ -19,54 +20,78 @@ def all_terms_conditions(license_type):
 
 #TODO, finish building the app to call of the rest of these queries
 def conditions_types_all():
+    # return all types of conditions in the kb
     search_term = 'Condition'
     results = list(kb_license.query(f'isA({search_term}, condition)'))
     return [sub[search_term] for sub in results]
+
+    # examples of how this works
     # What are the conditions of a license?
     # print('=== What are all the possible types of license conditions?')
     # print(list(kb_license.query('isA(Condition, condition)')))
     # print()
 
 def rights_types_all():
+    # return all types of rights in the kb
     search_term = 'Right'
     results = list(kb_license.query(f'isA({search_term}, right)'))
     return [sub[search_term] for sub in results]
+
+    # examples of how this works
     # What are the rights of a license?
     # print('=== What are all the possible rights of a license?')
     # print(list(kb_license.query('isA(Right, right)')))
     # print()
 
 def license_types():
+    # return all types of licenses in the KB
+    search_term = 'License'
+    results = list(kb_license.query(f'isA({search_term}, license)'))
+    return [sub[search_term] for sub in results]
+
+    # examples of how this works
     # What types of licenses are available?
-    print('=== What types of licenses are available?')
-    print(list(kb_license.query('isA(License, license)')))
-    print()
+    # print('=== What types of licenses are available?')
+    # print(list(kb_license.query('isA(License, license)')))
+    # print()
 
-def license_conditions():
+def license_conditions(license_type):
+    # return the all the conditions of a license
+    search_term = 'Conditions'
+    results = list(kb_license.query(f'extendsConditions({search_term}, {license_type})'))
+    return [sub[search_term] for sub in results]
+
+    # examples of how this works
     # What conditions (ONLY) are extended by a license?
-    print('=== What conditions (ONLY) are extended by a license?')
-    print('gnu_license')
-    print(list(kb_license.query('extendsConditions(Conditions, gnu_license)')))
-    print('mit_license')
-    print(list(kb_license.query('extendsConditions(Conditions, mit_license)')))
-    print('merchantability_license')
-    print(list(kb_license.query('extendsConditions(Conditions, merchantability_license)')))
-    print('guarantee_license')
-    print(list(kb_license.query('extendsConditions(Conditions, guarantee_license)')))
-    print()
+    # print('=== What conditions (ONLY) are extended by a license?')
+    # print('gnu_license')
+    # print(list(kb_license.query('extendsConditions(Conditions, gnu_license)')))
+    # print('mit_license')
+    # print(list(kb_license.query('extendsConditions(Conditions, mit_license)')))
+    # print('merchantability_license')
+    # print(list(kb_license.query('extendsConditions(Conditions, merchantability_license)')))
+    # print('guarantee_license')
+    # print(list(kb_license.query('extendsConditions(Conditions, guarantee_license)')))
+    # print()
 
-def license_permissions():
+def license_rights(license_type):
+    # return the all the rights of a license
+    search_term = 'Rights'
+    results = list(kb_license.query(f'extendsRights({search_term}, {license_type})'))
+    return [sub[search_term] for sub in results]
+
+    # examples of how this works
     # What permissions (ONLY) are extended by a license?
-    print('=== What rights (ONLY) are extended by a license?')
-    print('gnu_license')
-    print(list(kb_license.query('extendsRights(Rights, gnu_license)')))
-    print('mit_license')
-    print(list(kb_license.query('extendsRights(Rights, mit_license)')))
-    print('merchantability_license')
-    print(list(kb_license.query('extendsRights(Rights, merchantability_license)')))
-    print('guarantee_license')
-    print(list(kb_license.query('extendsRights(Rights, guarantee_license)')))
-    print()
+    # print('=== What rights (ONLY) are extended by a license?')
+    # print('gnu_license')
+    # print(list(kb_license.query('extendsRights(Rights, gnu_license)')))
+    # print('mit_license')
+    # print(list(kb_license.query('extendsRights(Rights, mit_license)')))
+    # print('merchantability_license')
+    # print(list(kb_license.query('extendsRights(Rights, merchantability_license)')))
+    # print('guarantee_license')
+    # print(list(kb_license.query('extendsRights(Rights, guarantee_license)')))
+    # print()
 
 def repository_license():
     # What is the license of a repository?

@@ -2,30 +2,43 @@ from application.config import *
 from knowledge_base.kb_license_query import all_terms_conditions
 from knowledge_base.kb_license_query import conditions_types_all
 from knowledge_base.kb_license_query import rights_types_all
+from knowledge_base.kb_license_query import license_conditions
+from knowledge_base.kb_license_query import license_rights
 
 def query_kb(sidebar_selection):
     # Display a header to describe stuff contained in this funciton
-    st.header(f'The {sidebar_selection} License')
+    st.header(f'Looking up {sidebar_selection}')
 
-    # embed the question as the label of the select box
-    analysis_option = st.selectbox(label='What do you want to know?'
-                                 , options=['Everything', 'Rights', 'Conditions'])
+    if sidebar_selection == 'Everything!':
+        analysis_option = st.selectbox(label='What do you want to know?'
+                                       , options=['Rights', 'Conditions'])
+        if analysis_option == 'Rights':
+            results = rights_types_all()
+            for result in results:
+                st.button(result)
+        if analysis_option == 'Conditions':
+            results = conditions_types_all()
+            for result in results:
+                st.button(result)
 
-    # configure the query term (needs work)
-    #TODO: make this scalable for many types of licenses
-    license_to_query = 'mit_license' if sidebar_selection == 'MIT' else 'gnu_license' if sidebar_selection == 'GNU GPL 3.0' else ''
+    else:
+        # embed the question as the label of the select box
+        analysis_option = st.selectbox(label='What do you want to know?'
+                                       , options=['Everything', 'Rights', 'Conditions'])
+        # three conditional statements based on the options listed in select box
+        if analysis_option == 'Everything':
+            st.write(f'All the Terms and Conditions of {sidebar_selection}')
+            results = all_terms_conditions(sidebar_selection)
+            for result in results:
+                st.button(result)
 
-    # three conditional statements based on the options listed in select box
-    if analysis_option == 'Everything':
-        st.write(f'All the Terms and Conditions of {sidebar_selection}')
-        results = all_terms_conditions(license_to_query)
-        for result in results:
-            st.button(result)
-    if analysis_option == 'Rights':
-        results = rights_types_all()
-        for result in results:
-            st.button(result)
-    if analysis_option == 'Conditions':
-        results = conditions_types_all()
-        for result in results:
-            st.button(result)
+        if analysis_option == 'Rights':
+            results = license_rights(sidebar_selection)
+            for result in results:
+                st.button(result)
+
+        if analysis_option == 'Conditions':
+            results = license_conditions(sidebar_selection)
+            for result in results:
+                st.button(result)
+
