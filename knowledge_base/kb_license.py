@@ -66,84 +66,23 @@ kb.store('extends(gnu_license, same_license)')
 kb.store('extends(merchantability_license, private_use)')
 kb.store('extends(guarantee_license, private_use)')
 
-# What are ALL the terms and conditions a license?
-print('=== What are all the terms and conditions that a license-type can extend?')
-print('gnu_license')
-print(list(kb.query('extends(gnu_license, TermsAndConditions)')))
-print('mit_license')
-print(list(kb.query('extends(mit_license, TermsAndConditions)')))
-print('merchantability_license')
-print(list(kb.query('extends(merchantability_license, TermsAndConditions)')))
-print('guarantee_license')
-print(list(kb.query('extends(guarantee_license, TermsAndConditions)')))
-print()
-
-# What are the conditions of a license?
-print('=== What are all the possible types of license conditions?')
-print(list(kb.query('isA(Condition, condition)')))
-print()
-
-# What are the rights of a license?
-print('=== What are all the possible rights of a license?')
-print(list(kb.query('isA(Right, right)')))
-print()
-
-# What types of licenses are available?
-print('=== What types of licenses are available?')
-print(list(kb.query('isA(License, license)')))
-print()
-
 # What conditions (ONLY) are extended by a license?
-print('=== What conditions (ONLY) are extended by a license?')
 # THE RULE
 kb.store('extendsConditions(X, Y) :- extends(Y, X), isA(X, condition), isA(Y, license)')
-print('gnu_license')
-print(list(kb.query('extendsConditions(Conditions, gnu_license)')))
-print('mit_license')
-print(list(kb.query('extendsConditions(Conditions, mit_license)')))
-print('merchantability_license')
-print(list(kb.query('extendsConditions(Conditions, merchantability_license)')))
-print('guarantee_license')
-print(list(kb.query('extendsConditions(Conditions, guarantee_license)')))
-print()
 
 # What permissions (ONLY) are extended by a license?
-print('=== What rights (ONLY) are extended by a license?')
 # THE RULE
 kb.store('extendsRights(X, Y) :- extends(Y, X), isA(X, right), isA(Y, license)')
-print('gnu_license')
-print(list(kb.query('extendsRights(Rights, gnu_license)')))
-print('mit_license')
-print(list(kb.query('extendsRights(Rights, mit_license)')))
-print('merchantability_license')
-print(list(kb.query('extendsRights(Rights, merchantability_license)')))
-print('guarantee_license')
-print(list(kb.query('extendsRights(Rights, guarantee_license)')))
-print()
-
-# What is the license of a repository?
-print('=== What is the license of a repository?')
-print(list(kb.query('licenseOf(<github_repo>, License)')))
-print()
 
 # What are ALL the terms and conditions a repository's license?
-print('=== What are the terms and conditions a repository\'s license?')
 # THE RULE
 kb.store('repositoryTermsConditions(X, Z) :- licenseOf(X, Y), extends(Y, Z), isA(Y, license)')
-print(list(kb.query('repositoryTermsConditions(<github_repo>, TermsAndConditions)')))
-print()
 
 # What rights (ONLY) are extended by a repository?
-print('=== What rights (ONLY) are extended by a repository?')
 # THE RULE
 kb.store('repositoryRights(X, Z) :- licenseOf(X, Y), extendsRights(Z, Y)')
-print(list(kb.query('repositoryRights(<github_repo>, RepositoryRights)')))
-print()
 
 # What conditions (ONLY) are extended by a repository?
-print('=== What conditions (ONLY) are extended by a repository?')
 # THE RULE
 kb.store('repositoryConditions(X, Z) :- licenseOf(X, Y), extendsConditions(Z, Y)')
-print(list(kb.query('repositoryConditions(<github_repo>, RepositoryConditions)')))
-print()
 
