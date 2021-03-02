@@ -39,7 +39,7 @@ class Application():
     def footer(self):
         # make st calls for footer section here
         st.markdown(
-            '<i style="font-size:11px">Version Alpha</i>',
+            '<i style="font-size:11px">Version Alpha\nPowered by [Zincbase](https://github.com/tomgrek/zincbase)</i>',
             unsafe_allow_html=True)
         st.markdown(
             '<i style="font-size:11px">&copy All Rights Reserved [The Project Group](https://github.com/MSAI-KRR-Group)</i>',
