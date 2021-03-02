@@ -1,53 +1,37 @@
 from application.config import *
 from application.index_sidebar import main_menu
-from knowledge_base.kb_license_query import all_terms_conditions
+from application.index_main_queries import query_kb
+
 class Application():
     def __init__(self):
         st.set_page_config(page_title='Contract Companion')
 
     def run_app(self):
+        # primary app call will run everything contained in frame()
         self.frame()
 
     def frame(self):
+        # place main components of page here, add more as necessary
         self.title()
         self.body()
         self.footer()
 
     def title(self):
+        # execute st calls for title section
         st.title('A Contract Companion')
 
     def body(self):
+        # execute st calls for body section
+        # a header for this section
         st.markdown("<h3 style='text-align: center; color: black;font-family:courier;'> Your Contract, Your Knowledge </h3>", unsafe_allow_html=True)
+
+        # makes a sidebar selection in index
         sidebar_selection = main_menu()
 
-        if sidebar_selection == 'MIT License':
-            st.header('The MIT License')
-            analysis_option = st.selectbox('What do you want to know?', ['Everything', 'Rights', 'Conditions'])
-
-            if analysis_option == 'Everything':
-                st.write(f'All the Terms and Conditions of {sidebar_selection}')
-                results = all_terms_conditions('mit_license')
-                for result in results:
-                    st.button(result)
-            #TODO: configure results and options for each query type from kb_license_query
-            if analysis_option == 'Rights':
-                st.write('return all Rights')
-            if analysis_option == 'Conditions':
-                st.write('return all Conditions')
-
-        if sidebar_selection == 'GNU GPL 3.0':
-            st.header('GNU GPL 3.0 License')
-            analysis_option = st.selectbox('What do you want to know?', ['Everything', 'Rights', 'Conditions'])
-
-            if analysis_option == 'Everything':
-                st.write(f'All the Terms and Conditions of {sidebar_selection}')
-                results = all_terms_conditions('gnu_license')
-                for result in results:
-                    st.button(result)
-            if analysis_option == 'Rights':
-                st.write('return all Rights')
-            if analysis_option == 'Conditions':
-                st.write('return all Conditions')
+        # if there is a selection, run a query based on the selected value
+        if sidebar_selection:
+            # call the helper function
+            query_kb(sidebar_selection)
 
 
     def footer(self):
