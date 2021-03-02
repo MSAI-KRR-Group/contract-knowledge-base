@@ -2,11 +2,14 @@
 
 # Misc Setup
 
-## Zincbase - Knowledge Base and Logic Engine
+## Zincbase
 
-Reference to GitRepo: [https://github.com/complexdb/zincbase](https://github.com/complexdb/zincbase)
+* We use Zincbase to build and maintain a knowledge base and logic engine
+* Reference to GitRepo: [https://github.com/complexdb/zincbase](https://github.com/complexdb/zincbase)
 
-## Streamlit - Front End
+## Streamlit
+
+* We use Streamlit to deploy application code
 
 From terminal:
 
