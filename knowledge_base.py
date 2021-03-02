@@ -5,7 +5,7 @@ kb = KB()
 # the primary owner of the project as a licensor
 # and the git repo as a project
 kb.store('isa(<github_username>, licensor)')
-kb.store('isa(<github_repo>, project)')
+kb.store('isa(<github_repo>, repository)')
 
 # two primary types of licenses on GitHub (MIT and GNU) and two generic ones for testing
 kb.store('isA(mit_license, license)')
@@ -62,20 +62,20 @@ kb.store('extends(gnu_license, state_changes)')
 kb.store('extends(gnu_license, disclose_source)')
 kb.store('extends(gnu_license, same_license)')
 
-# made up conditions for merchantability and garuntee license
+# made up conditions for merchantability and guarantee license
 kb.store('extends(merchantability_license, private_use)')
 kb.store('extends(guarantee_license, private_use)')
 
-# What are the things that a license can extend?
-print('=== What are all the things that a given license can extend?')
+# What are ALL the terms and conditions a license?
+print('=== What are all the terms and conditions that a license-type can extend?')
 print('gnu_license')
-print(list(kb.query('extends(gnu_license, LicenseTermsAndConditions)')))
+print(list(kb.query('extends(gnu_license, TermsAndConditions)')))
 print('mit_license')
-print(list(kb.query('extends(mit_license, LicenseTermsAndConditions)')))
+print(list(kb.query('extends(mit_license, TermsAndConditions)')))
 print('merchantability_license')
-print(list(kb.query('extends(merchantability_license, LicenseTermsAndConditions)')))
+print(list(kb.query('extends(merchantability_license, TermsAndConditions)')))
 print('guarantee_license')
-print(list(kb.query('extends(guarantee_license, LicenseTermsAndConditions)')))
+print(list(kb.query('extends(guarantee_license, TermsAndConditions)')))
 print()
 
 # What are the conditions of a license?
@@ -121,4 +121,29 @@ print('guarantee_license')
 print(list(kb.query('extendsRights(Rights, guarantee_license)')))
 print()
 
+# What is the license of a repository?
+print('=== What is the license of a repository?')
+print(list(kb.query('licenseOf(<github_repo>, License)')))
+print()
+
+# What are ALL the terms and conditions a repository's license?
+print('=== What are the terms and conditions a repository\'s license?')
+# THE RULE
+kb.store('repositoryTermsConditions(X, Z) :- licenseOf(X, Y), extends(Y, Z), isA(Y, license)')
+print(list(kb.query('repositoryTermsConditions(<github_repo>, TermsAndConditions)')))
+print()
+
+# What rights (ONLY) are extended by a repository?
+print('=== What rights (ONLY) are extended by a repository?')
+# THE RULE
+kb.store('repositoryRights(X, Z) :- licenseOf(X, Y), extendsRights(Z, Y)')
+print(list(kb.query('repositoryRights(<github_repo>, RepositoryRights)')))
+print()
+
+# What conditions (ONLY) are extended by a repository?
+print('=== What conditions (ONLY) are extended by a repository?')
+# THE RULE
+kb.store('repositoryConditions(X, Z) :- licenseOf(X, Y), extendsConditions(Z, Y)')
+print(list(kb.query('repositoryConditions(<github_repo>, RepositoryConditions)')))
+print()
 
