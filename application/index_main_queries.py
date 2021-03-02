@@ -14,9 +14,15 @@ from knowledge_base.kb_license_query import repository_conditions
 def query_kb(sidebar_selection):
     # import css styles
     local_css("styles_css/style.css")
+    css_red = "<span class='highlight red'>"
     css_green = "<span class='highlight green'>"
     css_blue = "<span class='highlight blue'>"
     css_end = "</span>"
+
+    all_kb_terms_conditions = []
+    all_kb_terms_conditions.extend(rights_types_all())
+    all_kb_terms_conditions.extend(conditions_types_all())
+
     # Display a header to describe stuff contained in this funciton
     if sidebar_selection == 'I have a repository':
         st.header(f'Looking up your repository, {sidebar_selection}')
@@ -53,14 +59,26 @@ def query_kb(sidebar_selection):
                                            , options=['Everything', 'Rights', 'Conditions'])
 
             if analysis_option == 'Everything':
-                st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} of {repo_name}', unsafe_allow_html=True)
+
+                all_results = []
+                st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} extended by {repo_name}', unsafe_allow_html=True)
                 results = repository_rights(repo_name)
+                all_results.extend(results)
                 for result in results:
                     st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
 
                 results = repository_conditions(repo_name)
+                all_results.extend(results)
                 for result in results:
                     st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+
+                st.write(f'The terms and conditions that are {css_red}NOT extended{css_end} by {repo_name}.',
+                         unsafe_allow_html=True)
+
+                not_terms_and_conditions = set(all_kb_terms_conditions) - set(all_results)
+
+                for result in not_terms_and_conditions:
+                    st.write(f'{css_red}{result}{css_end}', unsafe_allow_html=True)
 
             if analysis_option == 'Rights':
                 results = repository_rights(repo_name)
@@ -78,14 +96,29 @@ def query_kb(sidebar_selection):
                                        , options=['Everything', 'Rights', 'Conditions'])
         # three conditional statements based on the options listed in select box
         if analysis_option == 'Everything':
+            all_results = []
             st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} of {sidebar_selection}', unsafe_allow_html=True)
             results = license_rights(sidebar_selection)
+            all_results.extend(results)
             for result in results:
                 st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
 
             results = license_conditions(sidebar_selection)
+            all_results.extend(results)
             for result in results:
                 st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+
+            not_terms_and_conditions = set(all_kb_terms_conditions) - set(all_results)
+
+            if not_terms_and_conditions:
+
+                st.write(f'The terms and conditions that are {css_red}NOT extended{css_end} by {sidebar_selection}.',
+                         unsafe_allow_html=True)
+
+                for result in not_terms_and_conditions:
+                    st.write(f'{css_red}{result}{css_end}', unsafe_allow_html=True)
+
+
 
         if analysis_option == 'Rights':
             results = license_rights(sidebar_selection)
