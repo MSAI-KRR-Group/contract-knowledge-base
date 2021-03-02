@@ -2,6 +2,7 @@
 
 ## The App
 
+* Hosted on Streamlit
 * [A Contract Companion](https://share.streamlit.io/msai-krr-group/contract-knowledge-base/main/app.py)
 
 ## Misc Setup
@@ -14,7 +15,6 @@
 ### Streamlit
 
 * We use Streamlit to deploy application code
-
 * From terminal:
 
 ```terminal
