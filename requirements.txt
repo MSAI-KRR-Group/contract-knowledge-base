@@ -1,2 +1,7 @@
 zincbase
 streamlit
+# for zincbase force directed graphs
+eventlet
+flask
+flask_socketio
+redis
