@@ -2,12 +2,14 @@
 
 # Misc Setup
 
-## Companion
+## Zincbase - Knowledge Base and Logic Engine
 
+Reference to GitRepo: [https://github.com/complexdb/zincbase](https://github.com/complexdb/zincbase)
+
+## Streamlit - Front End
+
+From terminal:
+
+```terminal
+streamlit run app.py
 ```
-docker run -dit -p 9100:9100 --name companion -v <absolute_path_to_companions_folder>:/companions centos:7 /companions/CompanionsServer64
-```
-
-## Pythonian
-
-Reference to GitRepo: [https://github.com/bgyori/pykqml](https://github.com/bgyori/pykqml)
