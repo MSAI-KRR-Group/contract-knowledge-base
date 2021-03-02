@@ -1,5 +1,10 @@
 # contract-knowledge-base
 
+## How to Contribute
+
+* Commits to main branch deploy directly to the app, so test before you push
+* Launch a local streamlit app with *streamlit run app.py*
+
 ## The App
 
 * Hosted on Streamlit
