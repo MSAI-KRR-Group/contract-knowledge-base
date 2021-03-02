@@ -11,7 +11,7 @@
 
 * We use Streamlit to deploy application code
 
-From terminal:
+* From terminal:
 
 ```terminal
 streamlit run app.py
