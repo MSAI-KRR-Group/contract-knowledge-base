@@ -10,6 +10,7 @@ def query_kb(sidebar_selection):
     st.header(f'Looking up {sidebar_selection}')
 
     if sidebar_selection == 'Everything!':
+        # enable a set of queries to get general information
         analysis_option = st.selectbox(label='What do you want to know?'
                                        , options=['Rights', 'Conditions'])
         if analysis_option == 'Rights':
@@ -22,7 +23,7 @@ def query_kb(sidebar_selection):
                 st.button(result)
 
     else:
-        # embed the question as the label of the select box
+        # enable a set of queries that are specific to a license type
         analysis_option = st.selectbox(label='What do you want to know?'
                                        , options=['Everything', 'Rights', 'Conditions'])
         # three conditional statements based on the options listed in select box

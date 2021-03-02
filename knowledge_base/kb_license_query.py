@@ -93,6 +93,7 @@ def license_rights(license_type):
     # print(list(kb_license.query('extendsRights(Rights, guarantee_license)')))
     # print()
 
+#TODO: How to implement a workflow of queries based on repository? Can we link back to actual repo?
 def repository_license():
     # What is the license of a repository?
     print('=== What is the license of a repository?')
