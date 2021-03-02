@@ -1,4 +1,6 @@
 from application.config import *
+from application.load_css import local_css
+
 from knowledge_base.kb_license_query import all_terms_conditions
 from knowledge_base.kb_license_query import conditions_types_all
 from knowledge_base.kb_license_query import rights_types_all
@@ -10,6 +12,11 @@ from knowledge_base.kb_license_query import repository_rights
 from knowledge_base.kb_license_query import repository_conditions
 
 def query_kb(sidebar_selection):
+    # import css styles
+    local_css("styles_css/style.css")
+    css_green = "<span class='highlight green'>"
+    css_blue = "<span class='highlight blue'>"
+    css_end = "</span>"
     # Display a header to describe stuff contained in this funciton
     if sidebar_selection == 'I have a repository':
         st.header(f'Looking up your repository, {sidebar_selection}')
@@ -23,11 +30,11 @@ def query_kb(sidebar_selection):
         if analysis_option == 'Rights':
             results = rights_types_all()
             for result in results:
-                st.button(result)
+                st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
         if analysis_option == 'Conditions':
             results = conditions_types_all()
             for result in results:
-                st.button(result)
+                st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
 
     elif sidebar_selection == 'I have a repository':
         temp_default_repo_name = '<github_repo>'
@@ -46,19 +53,24 @@ def query_kb(sidebar_selection):
                                            , options=['Everything', 'Rights', 'Conditions'])
 
             if analysis_option == 'Everything':
-                results = repository_terms_conditions(repo_name)
+                st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} of {repo_name}', unsafe_allow_html=True)
+                results = repository_rights(repo_name)
                 for result in results:
-                    st.button(result)
+                    st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
+
+                results = repository_conditions(repo_name)
+                for result in results:
+                    st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
 
             if analysis_option == 'Rights':
                 results = repository_rights(repo_name)
                 for result in results:
-                    st.button(result)
+                    st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
 
             if analysis_option == 'Conditions':
                 results = repository_conditions(repo_name)
                 for result in results:
-                    st.button(result)
+                    st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
 
     else:
         # enable a set of queries that are specific to a license type
@@ -66,18 +78,22 @@ def query_kb(sidebar_selection):
                                        , options=['Everything', 'Rights', 'Conditions'])
         # three conditional statements based on the options listed in select box
         if analysis_option == 'Everything':
-            st.write(f'All the Terms and Conditions of {sidebar_selection}')
-            results = all_terms_conditions(sidebar_selection)
+            st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} of {sidebar_selection}', unsafe_allow_html=True)
+            results = license_rights(sidebar_selection)
             for result in results:
-                st.button(result)
+                st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
+
+            results = license_conditions(sidebar_selection)
+            for result in results:
+                st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
 
         if analysis_option == 'Rights':
             results = license_rights(sidebar_selection)
             for result in results:
-                st.button(result)
+                st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
 
         if analysis_option == 'Conditions':
             results = license_conditions(sidebar_selection)
             for result in results:
-                st.button(result)
+                st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
 
