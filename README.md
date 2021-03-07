@@ -1,6 +1,6 @@
 # contract-knowledge-base
 
-![](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png =250x250)
+![KB](<img src="https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png" width="40%"</img>)
 
 ## About
 
