@@ -1,8 +1,10 @@
 from application.index import Application
 
-app = Application()
+if __name__ == '__main__':
 
-def run_app():
-    app.run_app()
+    app = Application()
 
-run_app()
+    def run_app():
+        app.run_app()
+
+    run_app()
