@@ -132,3 +132,4 @@ dmypy.json
 .idea/
 .DS_Store
 companions-exe-02-12-2020/
+/grid.dot

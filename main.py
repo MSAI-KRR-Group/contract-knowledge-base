@@ -9,5 +9,5 @@ if __name__ == '__main__':
     all_nodes = kb_license.nodes()
     all_edges = kb_license.edges()
 
-    G = kb_license.plot()
-    print(G)
+    kb_license.plot()
+

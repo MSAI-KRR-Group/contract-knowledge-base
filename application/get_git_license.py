@@ -2,6 +2,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 def get_license_name(url):
+
     try:
         page = urllib.request.urlopen(url).read()
         soup = BeautifulSoup(page, features="html.parser")
