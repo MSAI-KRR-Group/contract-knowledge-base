@@ -1,6 +1,6 @@
 # contract-knowledge-base
 
-[The Knowledge Base](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
+![The Knowledge Base](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
 
 ## About
 
