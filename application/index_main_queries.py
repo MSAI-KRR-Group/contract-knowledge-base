@@ -81,8 +81,6 @@ def query_kb(sidebar_selection):
                 for result in not_terms_and_conditions:
                     st.write(f'{css_red}{result}{css_end}', unsafe_allow_html=True)
 
-
-
         if analysis_option == 'Rights':
             results = license_rights(sidebar_selection)
             for result in results:

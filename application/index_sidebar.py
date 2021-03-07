@@ -6,7 +6,7 @@ def main_menu():
     pick_list_values = license_types()
     # hard code an option to pick everything as default state
     pick_list_values.insert(0, 'Everything!')
-    pick_list_values.append('I have a repository')
+    pick_list_values.insert(0, 'I have a repository')
     # convenience object
     sidebar_picklist = pick_list_values
     # return the select box with options as st object
