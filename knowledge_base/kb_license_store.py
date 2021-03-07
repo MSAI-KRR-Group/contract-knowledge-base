@@ -2,6 +2,8 @@
 
 from knowledge_base.config import kb_license
 
+kb_license.name = 'contract_companion'
+
 # the primary owner of the project as a licensor
 # and the git repo as a project
 kb_license.store('isa(<github_username>, licensor)')

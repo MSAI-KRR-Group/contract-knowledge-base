@@ -1,7 +1,13 @@
 # this area is just for debugging etc
 # scrips are called by app from application
 from knowledge_base.kb_license_query import all_terms_conditions
+from knowledge_base.kb_license_store import *
 
-all_terms_conditions('mit_license')
+if __name__ == '__main__':
 
-## a trivial update
+    # print(kb_license.name)
+    all_nodes = kb_license.nodes()
+    all_edges = kb_license.edges()
+
+    G = kb_license.plot()
+    print(G)
