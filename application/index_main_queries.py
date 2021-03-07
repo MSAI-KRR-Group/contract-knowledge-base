@@ -1,5 +1,6 @@
 from application.config import *
 from application.load_css import local_css
+from application.get_git_license import get_license_name
 
 from knowledge_base.kb_license_query import all_terms_conditions
 from knowledge_base.kb_license_query import conditions_types_all
@@ -10,6 +11,7 @@ from knowledge_base.kb_license_query import repository_license
 from knowledge_base.kb_license_query import repository_terms_conditions
 from knowledge_base.kb_license_query import repository_rights
 from knowledge_base.kb_license_query import repository_conditions
+
 
 def query_kb(sidebar_selection):
     # import css styles
@@ -25,9 +27,9 @@ def query_kb(sidebar_selection):
 
     # Display a header to describe stuff contained in this funciton
     if sidebar_selection == 'I have a repository':
-        st.header(f'Looking up your repository, {sidebar_selection}')
+        st.header(f'Looking Up a License for a Repository')
     else:
-        st.header(f'Looking up {sidebar_selection}')
+        st.header(f'Found {sidebar_selection}')
 
     if sidebar_selection == 'Everything!':
         # enable a set of queries to get general information
@@ -43,52 +45,13 @@ def query_kb(sidebar_selection):
                 st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
 
     elif sidebar_selection == 'I have a repository':
-        temp_default_repo_name = '<github_repo>'
+        # configure default value to look up a repository URL
+        repo_url = st.text_input(label='Look up our repository or replace it with your own Git URL.'
+                                 , value='https://github.com/MSAI-KRR-Group/contract-knowledge-base')
 
-        repo_name = st.text_input(label='What is the repository name?'
-                                  ,value=temp_default_repo_name)
-
-        results = repository_license(repo_name)
-
-        for result in results:
-            # looping through results but really only expectig one license per repository
-            st.write(f'The license for {repo_name} is {result}')
-
-        if repo_name:
-            analysis_option = st.selectbox(label=f'What do you want to know about {repo_name}?'
-                                           , options=['Everything', 'Rights', 'Conditions'])
-
-            if analysis_option == 'Everything':
-
-                all_results = []
-                st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} extended by {repo_name}', unsafe_allow_html=True)
-                results = repository_rights(repo_name)
-                all_results.extend(results)
-                for result in results:
-                    st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
-
-                results = repository_conditions(repo_name)
-                all_results.extend(results)
-                for result in results:
-                    st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
-
-                st.write(f'The terms and conditions that are {css_red}NOT extended{css_end} by {repo_name}.',
-                         unsafe_allow_html=True)
-
-                not_terms_and_conditions = set(all_kb_terms_conditions) - set(all_results)
-
-                for result in not_terms_and_conditions:
-                    st.write(f'{css_red}{result}{css_end}', unsafe_allow_html=True)
-
-            if analysis_option == 'Rights':
-                results = repository_rights(repo_name)
-                for result in results:
-                    st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
-
-            if analysis_option == 'Conditions':
-                results = repository_conditions(repo_name)
-                for result in results:
-                    st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+        # apply a recursive call to return the associated knowledge
+        if repo_url:
+            query_kb(get_license_name(repo_url))
 
     else:
         # enable a set of queries that are specific to a license type

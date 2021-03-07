@@ -5,3 +5,4 @@ eventlet
 flask
 flask_socketio
 redis
+bs4
