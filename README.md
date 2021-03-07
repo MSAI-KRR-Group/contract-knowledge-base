@@ -1,5 +1,7 @@
 # contract-knowledge-base
 
+![KB](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
+
 ## About
 
 * What happens when you make a knowledge base from a set of contracts?
