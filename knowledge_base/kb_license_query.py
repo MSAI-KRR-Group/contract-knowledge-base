@@ -138,3 +138,14 @@ def repository_conditions(repo_name='<github_repo>'):
     # print(list(kb_license.query('repositoryConditions(<github_repo>, RepositoryConditions)')))
     # print()
 
+def warranty_type(license_type):
+    # return all terms and conditions of a license
+    search_term = 'Warranty'
+    results = list(kb_license.query(f'extendsWarranties({search_term}, {license_type})'))
+    return [sub[search_term] for sub in results]
+
+def warranty_all():
+    # return all types of conditions in the kb
+    search_term = 'Warranty'
+    results = list(kb_license.query(f'isA({search_term}, warranty)'))
+    return [sub[search_term] for sub in results]

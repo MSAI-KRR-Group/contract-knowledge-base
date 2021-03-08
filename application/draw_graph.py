@@ -10,12 +10,12 @@ def draw_license_graph(x):
 
     G.edge(x, 'license', label='isA')
 
-    all_tc = all_terms_conditions(x)
-    rights = license_rights(x)
-    conditions = license_conditions(x)
-
     G.edge(x, 'conditions', label='extendsConditions')
     G.edge(x, 'rights', label='extendsRights')
+
+    results = warranty_type(x)
+    if results:
+        G.edge(x, 'warranties', label='extendsWarranties')
 
     st.write('The Current Knowledge Graph')
 

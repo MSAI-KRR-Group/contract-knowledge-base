@@ -12,7 +12,10 @@ from knowledge_base.kb_license_query import repository_license
 from knowledge_base.kb_license_query import repository_terms_conditions
 from knowledge_base.kb_license_query import repository_rights
 from knowledge_base.kb_license_query import repository_conditions
+from knowledge_base.kb_license_query import warranty_type, warranty_all
+
 from knowledge_base.kb_license_store import kb_license
+
 
 def query_kb(sidebar_selection):
     # import css styles
@@ -20,6 +23,7 @@ def query_kb(sidebar_selection):
     css_red = "<span class='highlight red'>"
     css_green = "<span class='highlight green'>"
     css_blue = "<span class='highlight blue'>"
+    css_orange = "<span class='highlight orange'>"
     css_end = "</span>"
 
     all_kb_terms_conditions = []
@@ -36,15 +40,21 @@ def query_kb(sidebar_selection):
 
         # enable a set of queries to get general information
         analysis_option = st.selectbox(label='What do you want to know?'
-                                       , options=['Rights', 'Conditions'])
+                                       , options=['Rights', 'Conditions', 'Warranties'])
         if analysis_option == 'Rights':
             results = rights_types_all()
             for result in results:
                 st.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
+
         if analysis_option == 'Conditions':
             results = conditions_types_all()
             for result in results:
                 st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+
+        if analysis_option == 'Warranties':
+            results = warranty_all()
+            for result in results:
+                st.write(f'{css_orange}{result}{css_end}', unsafe_allow_html=True)
 
     elif sidebar_selection == 'I have a repository':
         # configure default value to look up a repository URL
@@ -57,7 +67,7 @@ def query_kb(sidebar_selection):
             repo_license = get_license_name(repo_url)
             st.write(f'Found a {repo_license} at {repo_url}')
 
-            repo_url = repo_url.replace(':','')
+            repo_url = repo_url.replace('https://','')
 
             search_term = 'Repository'
             check_kb = list(kb_license.query(f'isA({search_term}, repository)'))
@@ -73,7 +83,7 @@ def query_kb(sidebar_selection):
     else:
         # enable a set of queries that are specific to a license type
         analysis_option = st.selectbox(label='What do you want to know?'
-                                       , options=['Everything', 'Rights', 'Conditions'])
+                                       , options=['Everything', 'Rights', 'Conditions', 'Warranties'])
         # three conditional statements based on the options listed in select box
         if analysis_option == 'Everything':
             draw_license_graph(sidebar_selection)
@@ -116,4 +126,13 @@ def query_kb(sidebar_selection):
             results = license_conditions(sidebar_selection)
             for result in results:
                 st.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+
+        if analysis_option == 'Warranties':
+            warranty_type(sidebar_selection)
+            results = warranty_type(sidebar_selection)
+            if results:
+                for result in results:
+                    st.write(f'{css_orange}{result}{css_end}', unsafe_allow_html=True)
+            else:
+                st.write(f'{css_orange}No Warranties{css_end}', unsafe_allow_html=True)
 

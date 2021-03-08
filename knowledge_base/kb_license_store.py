@@ -88,3 +88,13 @@ kb_license.store('repositoryRights(X, Z) :- licenseOf(X, Y), extendsRights(Z, Y)
 # THE RULE
 kb_license.store('repositoryConditions(X, Z) :- licenseOf(X, Y), extendsConditions(Z, Y)')
 
+
+# What warranties does a license extend?
+# THE RULE
+kb_license.store('extendsWarranties(X, Y) :- extends(Y, X), isA(X, warranty), isA(Y, license)')
+
+# add comments about facts in the KB
+kb_license.node('mit_license').comment = "The MIT License is a permissive type of copyleft license."
+kb_license.node('gnu_license').comment = "The GNU GPL License is a strong type of copyleft license."
+kb_license.node('right').comment = "A claim recognized and delimited by law for the purpose of securing it - Websters."
+kb_license.node('commercial_use').comment = "Commercial use describes any activity in which you use a product or service for financial gain. "
