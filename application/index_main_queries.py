@@ -29,6 +29,7 @@ def query_kb(sidebar_selection):
     all_kb_terms_conditions = []
     all_kb_terms_conditions.extend(rights_types_all())
     all_kb_terms_conditions.extend(conditions_types_all())
+    all_kb_terms_conditions.extend(warranty_all())
 
     # Display a header to describe stuff contained in this funciton
     if sidebar_selection == 'I have a repository':
@@ -89,12 +90,12 @@ def query_kb(sidebar_selection):
             draw_license_graph(sidebar_selection)
 
             all_results = []
-            st.write(f'All the {css_green}Terms{css_end} and {css_blue}Conditions{css_end} of {sidebar_selection}', unsafe_allow_html=True)
+            st.write(f'All the {css_green}Terms{css_end}, {css_blue}Conditions{css_end}, and {css_orange}Warranties{css_end} of {sidebar_selection}', unsafe_allow_html=True)
 
             results = license_rights(sidebar_selection)
             all_results.extend(results)
 
-            col1, col2 = st.beta_columns(2)
+            col1, col2, col3= st.beta_columns(3)
             col1.header('Rights')
             for result in results:
                 col1.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
@@ -104,6 +105,12 @@ def query_kb(sidebar_selection):
             col2.header('Conditions')
             for result in results:
                 col2.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+
+            results = warranty_type(sidebar_selection)
+            all_results.extend(results)
+            col3.header('Warranties')
+            for result in results:
+                col3.write(f'{css_orange}{result}{css_end}', unsafe_allow_html=True)
 
             not_terms_and_conditions = set(all_kb_terms_conditions) - set(all_results)
 
