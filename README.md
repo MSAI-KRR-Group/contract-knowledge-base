@@ -1,6 +1,8 @@
 # contract-knowledge-base
 
-![KB](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
+A example of inference in the knowledge base with Zincbase and Graphviz.
+
+![KB_repo](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_repo.png)
 
 ## About
 
@@ -34,3 +36,7 @@
 ```terminal
 streamlit run app.py
 ```
+
+A Snapshot of the Entire Knowledge Base
+
+![KB](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
