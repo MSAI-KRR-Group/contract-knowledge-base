@@ -1,8 +1,9 @@
 # Make queries HERE
 
-from knowledge_base.kb_license_store import *
+from knowledge_base.kb_license_store import license_mt
 
 def all_terms_conditions(license_type):
+    kb_license = license_mt()
     # return all terms and conditions of a license
     search_term = 'TermsAndConditions'
     results = list(kb_license.query(f'extends({license_type}, {search_term})'))
@@ -20,6 +21,7 @@ def all_terms_conditions(license_type):
 
 #TODO, finish building the app to call of the rest of these queries
 def conditions_types_all():
+    kb_license = license_mt()
     # return all types of conditions in the kb
     search_term = 'Condition'
     results = list(kb_license.query(f'isA({search_term}, condition)'))
@@ -32,6 +34,7 @@ def conditions_types_all():
     # print()
 
 def rights_types_all():
+    kb_license = license_mt()
     # return all types of rights in the kb
     search_term = 'Right'
     results = list(kb_license.query(f'isA({search_term}, right)'))
@@ -44,6 +47,7 @@ def rights_types_all():
     # print()
 
 def license_types():
+    kb_license = license_mt()
     # return all types of licenses in the KB
     search_term = 'License'
     results = list(kb_license.query(f'isA({search_term}, license)'))
@@ -56,6 +60,7 @@ def license_types():
     # print()
 
 def license_conditions(license_type):
+    kb_license = license_mt()
     # return the all the conditions of a license
     search_term = 'Conditions'
     results = list(kb_license.query(f'extendsConditions({search_term}, {license_type})'))
@@ -75,6 +80,7 @@ def license_conditions(license_type):
     # print()
 
 def license_rights(license_type):
+    kb_license = license_mt()
     # return the all the rights of a license
     search_term = 'Rights'
     results = list(kb_license.query(f'extendsRights({search_term}, {license_type})'))
@@ -95,6 +101,7 @@ def license_rights(license_type):
 
 #TODO: How to implement a workflow of queries based on repository? Can we link back to actual repo?
 def repository_license(repo_name='<github_repo>'):
+    kb_license = license_mt()
     search_term = 'License'
     results = list(kb_license.query(f'licenseOf({repo_name}, {search_term})'))
     return [sub[search_term] for sub in results]
@@ -106,6 +113,7 @@ def repository_license(repo_name='<github_repo>'):
     # print()
 
 def repository_terms_conditions(repo_name='<github_repo>'):
+    kb_license = license_mt()
     search_term = 'TermsAndConditions'
     results = list(kb_license.query(f'repositoryTermsConditions({repo_name}, {search_term})'))
     return [sub[search_term] for sub in results]
@@ -117,6 +125,7 @@ def repository_terms_conditions(repo_name='<github_repo>'):
     # print()
 
 def repository_rights(repo_name='<github_repo>'):
+    kb_license = license_mt()
     search_term = 'RepositoryRights'
     results = list(kb_license.query(f'repositoryRights({repo_name}, {search_term})'))
     return [sub[search_term] for sub in results]
@@ -128,6 +137,7 @@ def repository_rights(repo_name='<github_repo>'):
     # print()
 
 def repository_conditions(repo_name='<github_repo>'):
+    kb_license = license_mt()
     search_term = 'RepositoryConditions'
     results = list(kb_license.query(f'repositoryConditions({repo_name}, {search_term})'))
     return [sub[search_term] for sub in results]
@@ -139,12 +149,14 @@ def repository_conditions(repo_name='<github_repo>'):
     # print()
 
 def warranty_type(license_type):
+    kb_license = license_mt()
     # return all terms and conditions of a license
     search_term = 'Warranty'
     results = list(kb_license.query(f'extendsWarranties({search_term}, {license_type})'))
     return [sub[search_term] for sub in results]
 
 def warranty_all():
+    kb_license = license_mt()
     # return all types of conditions in the kb
     search_term = 'Warranty'
     results = list(kb_license.query(f'isA({search_term}, warranty)'))

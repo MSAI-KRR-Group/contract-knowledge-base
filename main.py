@@ -1,11 +1,12 @@
 # this area is just for debugging etc
 # scrips are called by app from application
 from knowledge_base.kb_license_query import all_terms_conditions
-from knowledge_base.kb_license_store import *
+from knowledge_base.kb_license_store import license_mt
 
 if __name__ == '__main__':
 
     # print(kb_license.name)
+    kb_license = license_mt()
     all_nodes = kb_license.nodes()
     all_edges = kb_license.edges()
 
@@ -18,5 +19,5 @@ if __name__ == '__main__':
     results = list(kb_license.query(f'extendsWarranties({search_term}, {license_type})'))
     result =  [sub[search_term] for sub in results]
 
-    print(result)
+    # print(result)
 

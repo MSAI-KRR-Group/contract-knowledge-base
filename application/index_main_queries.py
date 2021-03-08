@@ -14,10 +14,12 @@ from knowledge_base.kb_license_query import repository_rights
 from knowledge_base.kb_license_query import repository_conditions
 from knowledge_base.kb_license_query import warranty_type, warranty_all
 
-from knowledge_base.kb_license_store import kb_license
+from knowledge_base.kb_license_store import license_mt
 
 
 def query_kb(sidebar_selection):
+    # import microtheory
+    kb_license = license_mt()
     # import css styles
     local_css("styles_css/style.css")
     css_red = "<span class='highlight red'>"
