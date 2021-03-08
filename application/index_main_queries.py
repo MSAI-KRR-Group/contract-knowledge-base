@@ -81,6 +81,36 @@ def query_kb(sidebar_selection):
                     st.write(f'Stored your repository and license as a fact in KB.')
 
                 draw_repo_graph(repo_url, repo_license)
+
+                all_results = []
+                st.write(
+                    f'All the {css_green}Terms{css_end}, {css_blue}Conditions{css_end}, and {css_orange}Warranties{css_end} of {repo_url}',
+                    unsafe_allow_html=True)
+
+                results = license_rights(repo_license)
+                all_results.extend(results)
+
+                col1, col2, col3 = st.beta_columns(3)
+                col1.header('Rights')
+                for result in results:
+                    col1.write(f'{css_green}{result}{css_end}', unsafe_allow_html=True)
+
+                results = license_conditions(repo_license)
+                all_results.extend(results)
+                col2.header('Conditions')
+                for result in results:
+                    col2.write(f'{css_blue}{result}{css_end}', unsafe_allow_html=True)
+
+                results = warranty_type(repo_license)
+                all_results.extend(results)
+                col3.header('Warranties')
+                if results:
+                    for result in results:
+                        col3.write(f'{css_orange}{result}{css_end}', unsafe_allow_html=True)
+                else:
+                    col3.write(f'{css_orange}None{css_end}', unsafe_allow_html=True)
+
+
             else:
                 st.write(f'The target URL is {repo_license}, try again.')
 
