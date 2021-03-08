@@ -64,24 +64,25 @@ def query_kb(sidebar_selection):
         repo_url = st.text_input(label='Look up our repository or replace it with your own Git URL.'
                                  , value='https://github.com/MSAI-KRR-Group/contract-knowledge-base')
 
-        # apply a recursive call to return the associated knowledge
         if repo_url:
-            # query_kb(get_license_name(repo_url))
             repo_license = get_license_name(repo_url)
-            st.write(f'Found a {repo_license} at {repo_url}')
+            if repo_license != 'Unsupported':
+                st.write(f'Found a {repo_license} at {repo_url}')
 
-            repo_url = repo_url.replace('https://','')
+                repo_url = repo_url.replace('https://','')
 
-            search_term = 'Repository'
-            check_kb = list(kb_license.query(f'isA({search_term}, repository)'))
-            existing_repos = [sub[search_term] for sub in check_kb]
+                search_term = 'Repository'
+                check_kb = list(kb_license.query(f'isA({search_term}, repository)'))
+                existing_repos = [sub[search_term] for sub in check_kb]
 
-            if repo_url not in existing_repos:
-                # kb_license.store(f'isA({repo_url}, repository)')
-                kb_license.store(f'licenseOf({repo_url}, {repo_license})')
-                st.write(f'Stored your repository and license as a fact in KB.')
+                if repo_url not in existing_repos:
+                    # kb_license.store(f'isA({repo_url}, repository)')
+                    kb_license.store(f'licenseOf({repo_url}, {repo_license})')
+                    st.write(f'Stored your repository and license as a fact in KB.')
 
-            draw_repo_graph(repo_url, repo_license)
+                draw_repo_graph(repo_url, repo_license)
+            else:
+                st.write(f'The target URL is {repo_license}, try again.')
 
     else:
         # enable a set of queries that are specific to a license type

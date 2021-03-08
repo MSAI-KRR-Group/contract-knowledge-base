@@ -17,4 +17,4 @@ def get_license_name(url):
                 else:
                     return "<github_repo>"
     except:
-        return 'Repo Not Found or License Not Supported, displaying everything by default.'
+        return 'Unsupported'
