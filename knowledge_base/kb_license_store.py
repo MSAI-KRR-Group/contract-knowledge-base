@@ -6,8 +6,8 @@ kb_license.name = 'contract_companion'
 
 # the primary owner of the project as a licensor
 # and the git repo as a project
-kb_license.store('isa(<github_username>, licensor)')
-kb_license.store('isa(<github_repo>, repository)')
+kb_license.store('isA(<github_username>, licensor)')
+kb_license.store('isA(<github_repo>, repository)')
 
 # two primary types of licenses on GitHub (MIT and GNU) and two generic ones for testing
 kb_license.store('isA(mit_license, license)')
