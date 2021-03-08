@@ -1,6 +1,6 @@
 # contract-knowledge-base
 
-A example of inference in the knowledge base with Zincbase and Graphviz.
+A example of inference in a knowledge base with Zincbase and Graphviz.
 
 ![KB_repo](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_repo.png)
 
@@ -20,6 +20,12 @@ A example of inference in the knowledge base with Zincbase and Graphviz.
 
 * Hosted on Streamlit
 * App Link to [A Contract Companion](https://share.streamlit.io/msai-krr-group/contract-knowledge-base/main/app.py)
+
+## The Code
+
+* We leverage concepts from knowledge reasoning and representation (KRR) and apply object-oriented programming to create a microtheory of contracts. 
+
+* Given the micro theory of facts and rules, we build queries and allow the inference engine to provide answers.  
 
 ## Misc Setup
 
