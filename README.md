@@ -1,6 +1,6 @@
 # contract-knowledge-base
 
-![KB](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
+![KB_repo](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_repo.png)
 
 ## About
 
@@ -34,3 +34,5 @@
 ```terminal
 streamlit run app.py
 ```
+
+![KB](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
