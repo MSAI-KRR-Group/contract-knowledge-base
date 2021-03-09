@@ -14,10 +14,12 @@
 .orange {
   background-color: darkorange;
 }
-
 .red {
   background-color: lightcoral;
 }
 .green {
   background-color: mediumseagreen;
+}
+.gray {
+  background-color: grey;
 }

@@ -96,8 +96,10 @@ def license_mt():
     kb_license.store('extendsWarranties(X, Y) :- extends(Y, X), isA(X, warranty), isA(Y, license)')
 
     # add comments about facts in the KB
-    kb_license.node('mit_license').comment = "The MIT License is a permissive type of copyleft license."
-    kb_license.node('gnu_license').comment = "The GNU GPL License is a strong type of copyleft license."
+    kb_license.node('mit_license').comment = "The MIT License is a permissive type of copyleft license, it permits reuse within proprietary software so long as all copies of the software include a copy of the license."
+    kb_license.node('gnu_license').comment = "The GNU GPL License is a classic type of copyleft license, it allows for reuse but requires that all derivative works maintain similar licensing terms."
+    kb_license.node('merchantability_license').comment = "Merchantability is a fictitious license type that extends a type of warranty known as expressed warranty."
+    kb_license.node('guarantee_license').comment = "Guarantee is a fictitious license type that extends a type of warranty known as expressed warranty."
     kb_license.node('right').comment = "A claim recognized and delimited by law for the purpose of securing it - Websters."
     kb_license.node('commercial_use').comment = "Commercial use describes any activity in which you use a product or service for financial gain. "
 

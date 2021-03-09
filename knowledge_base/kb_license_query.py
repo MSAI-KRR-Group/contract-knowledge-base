@@ -161,3 +161,7 @@ def warranty_all():
     search_term = 'Warranty'
     results = list(kb_license.query(f'isA({search_term}, warranty)'))
     return [sub[search_term] for sub in results]
+
+def get_comment(x):
+    kb_license = license_mt()
+    return kb_license.node(x).comment

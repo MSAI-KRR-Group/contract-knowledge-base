@@ -3,7 +3,7 @@ from application.load_css import local_css
 from application.get_git_license import get_license_name
 from application.draw_graph import draw_license_graph, draw_rights_graph, draw_conditions_graph, draw_repo_graph
 
-from knowledge_base.kb_license_query import all_terms_conditions
+from knowledge_base.kb_license_query import license_types
 from knowledge_base.kb_license_query import conditions_types_all
 from knowledge_base.kb_license_query import rights_types_all
 from knowledge_base.kb_license_query import license_conditions
@@ -13,7 +13,7 @@ from knowledge_base.kb_license_query import repository_terms_conditions
 from knowledge_base.kb_license_query import repository_rights
 from knowledge_base.kb_license_query import repository_conditions
 from knowledge_base.kb_license_query import warranty_type, warranty_all
-
+from knowledge_base.kb_license_query import get_comment
 from knowledge_base.kb_license_store import license_mt
 
 
@@ -26,6 +26,7 @@ def query_kb(sidebar_selection):
     css_green = "<span class='highlight green'>"
     css_blue = "<span class='highlight blue'>"
     css_orange = "<span class='highlight orange'>"
+    css_gray = "<span class='highlight gray'>"
     css_end = "</span>"
 
     all_kb_terms_conditions = []
@@ -43,7 +44,7 @@ def query_kb(sidebar_selection):
 
         # enable a set of queries to get general information
         analysis_option = st.selectbox(label='What do you want to know?'
-                                       , options=['Rights', 'Conditions', 'Warranties'])
+                                       , options=['Licenses', 'Rights', 'Conditions', 'Warranties'])
         if analysis_option == 'Rights':
             results = rights_types_all()
             for result in results:
@@ -58,6 +59,21 @@ def query_kb(sidebar_selection):
             results = warranty_all()
             for result in results:
                 st.write(f'{css_orange}{result}{css_end}', unsafe_allow_html=True)
+
+        if analysis_option == 'Licenses':
+            results = license_types()
+            col1, col2 = st.beta_columns(2)
+            for result in results:
+                col1.write(f'{css_gray}{result}{css_end}', unsafe_allow_html=True)
+                col1.write('')
+                col1.write('')
+                comment = get_comment(result)
+                # col2.write(comment)
+                col2.markdown(
+                    f'<p style="font-size:12px">{comment}</p>',
+                    unsafe_allow_html=True
+                )
+
 
     elif sidebar_selection == 'I have a repository':
         # configure default value to look up a repository URL
@@ -109,7 +125,6 @@ def query_kb(sidebar_selection):
                         col3.write(f'{css_orange}{result}{css_end}', unsafe_allow_html=True)
                 else:
                     col3.write(f'{css_orange}None{css_end}', unsafe_allow_html=True)
-
 
             else:
                 st.write(f'The target URL is {repo_license}, try again.')
