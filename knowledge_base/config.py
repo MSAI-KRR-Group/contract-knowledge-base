@@ -12,6 +12,7 @@ extendsWarranties = 'extendsWarranties'
 repositoryConditions = 'repositoryConditions'
 repositoryRights = 'repositoryRights'
 repositoryTermsConditions = 'repositoryTermsConditions'
+supportsGoal = 'supportsGoal'
 
 # knowledge objects
 mit_license = 'mit_license'
@@ -34,3 +35,4 @@ same_license = 'same_license'
 
 condition = 'condition'
 warranty = 'warranty'
+goal = 'goal'
