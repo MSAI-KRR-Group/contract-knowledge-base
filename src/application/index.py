@@ -1,6 +1,6 @@
-from application.config import *
-from application.index_sidebar import main_menu
-from application.index_main_queries import query_kb
+from src.application.config import *
+from src.application.index_sidebar import main_menu
+from src.application.index_main_queries import query_kb
 
 class Application():
     def __init__(self):

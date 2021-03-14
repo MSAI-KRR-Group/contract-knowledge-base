@@ -1,6 +1,6 @@
-from application.config import *
+from src.application.config import *
 import graphviz as graphviz
-from knowledge_base.kb_license_query import *
+from src.knowledge_base.kb_license_query import *
 
 def draw_license_graph(x):
 

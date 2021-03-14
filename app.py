@@ -1,4 +1,4 @@
-from application.index import Application
+from src.application.index import Application
 
 if __name__ == '__main__':
 

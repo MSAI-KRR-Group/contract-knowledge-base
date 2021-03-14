@@ -1,7 +1,7 @@
 # this area is just for debugging etc
 # scrips are called by app from application
-from knowledge_base.kb_license_query import all_terms_conditions
-from knowledge_base.kb_license_store import license_mt
+from src.knowledge_base.kb_license_query import all_terms_conditions
+from src.knowledge_base.kb_license_store import license_mt
 
 if __name__ == '__main__':
 

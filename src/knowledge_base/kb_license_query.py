@@ -1,6 +1,6 @@
 # Make queries HERE
-from knowledge_base.config import *
-from knowledge_base.kb_license_store import license_mt
+from src.knowledge_base.config import *
+from src.knowledge_base.kb_license_store import license_mt
 
 def all_terms_conditions(license_type):
     kb = license_mt()

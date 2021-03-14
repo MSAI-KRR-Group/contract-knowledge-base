@@ -1,27 +1,30 @@
-from application.config import *
-from application.load_css import local_css
-from application.get_git_license import get_license_name
-from application.draw_graph import draw_license_graph, draw_rights_graph, draw_conditions_graph, draw_repo_graph
+from src.application.config import *
+from src.application.load_css import local_css
+from src.application.get_git_license import get_license_name
+from src.application.draw_graph import draw_license_graph, draw_rights_graph, draw_conditions_graph, draw_repo_graph
 
-from knowledge_base.kb_license_query import license_types
-from knowledge_base.kb_license_query import conditions_types_all
-from knowledge_base.kb_license_query import rights_types_all
-from knowledge_base.kb_license_query import license_conditions
-from knowledge_base.kb_license_query import license_rights
-from knowledge_base.kb_license_query import repository_license
-from knowledge_base.kb_license_query import repository_terms_conditions
-from knowledge_base.kb_license_query import repository_rights
-from knowledge_base.kb_license_query import repository_conditions
-from knowledge_base.kb_license_query import warranty_type, warranty_all
-from knowledge_base.kb_license_query import get_comment
-from knowledge_base.kb_license_store import license_mt
+from src.knowledge_base.kb_license_query import license_types
+from src.knowledge_base.kb_license_query import conditions_types_all
+from src.knowledge_base.kb_license_query import rights_types_all
+from src.knowledge_base.kb_license_query import license_conditions
+from src.knowledge_base.kb_license_query import license_rights
+from src.knowledge_base.kb_license_query import repository_license
+from src.knowledge_base.kb_license_query import repository_terms_conditions
+from src.knowledge_base.kb_license_query import repository_rights
+from src.knowledge_base.kb_license_query import repository_conditions
+from src.knowledge_base.kb_license_query import warranty_type, warranty_all
+from src.knowledge_base.kb_license_query import get_comment
+from src.knowledge_base.kb_license_store import license_mt
 
 
 def query_kb(sidebar_selection):
     # import microtheory
     kb_license = license_mt()
+    css_folder = os.sep.join([os.environ['PWD'], 'src', 'styles_css'])
+    css_filename = 'style.css'
+    css_file = os.sep.join([css_folder, css_filename])
     # import css styles
-    local_css("styles_css/style.css")
+    local_css(css_file)
     # store css highlights as string objects
     css_red = "<span class='highlight red'>"
     css_green = "<span class='highlight green'>"

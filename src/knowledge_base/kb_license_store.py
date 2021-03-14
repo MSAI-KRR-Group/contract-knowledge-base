@@ -1,6 +1,6 @@
 # STORE queries HERE
 
-from knowledge_base.config import *
+from src.knowledge_base.config import *
 
 def license_mt():
     kb = KB()

@@ -1,5 +1,5 @@
-from application.config import *
-from knowledge_base.kb_license_query import license_types
+from src.application.config import *
+from src.knowledge_base.kb_license_query import license_types
 
 def main_menu():
     # populate the list of possible licenses from the kb
