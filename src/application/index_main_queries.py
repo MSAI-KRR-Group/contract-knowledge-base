@@ -20,7 +20,7 @@ from src.knowledge_base.kb_license_store import license_mt
 def query_kb(sidebar_selection):
     # import microtheory
     kb_license = license_mt()
-    css_folder = os.sep.join([os.environ['PWD'], 'src', 'styles_css'])
+    css_folder = os.sep.join(['src', 'styles_css'])
     css_filename = 'style.css'
     css_file = os.sep.join([css_folder, css_filename])
     # import css styles
