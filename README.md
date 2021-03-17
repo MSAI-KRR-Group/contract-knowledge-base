@@ -2,7 +2,7 @@
 
 A example of inference in a knowledge base with Zincbase and Graphviz.
 
-![KB_repo](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_repo.png)
+![KB_repo](images/kb_repo.png)
 
 ## About
 
@@ -45,4 +45,4 @@ streamlit run app.py
 
 A Snapshot of the Entire Knowledge Base
 
-![KB](https://github.com/MSAI-KRR-Group/contract-knowledge-base/blob/main/kb_graph.png)
+![KB](images/kb_graph.png)
