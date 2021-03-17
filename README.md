@@ -11,10 +11,12 @@ A example of inference in a knowledge base with Zincbase and Graphviz.
 * The representation of each licence's goals are based on GitHub's interpretation
 * This project in no way represents actual advice, just an exercise in Knowledge Representation and Reasoning
 
-## How to Contribute
+## What is Knowledge Representation?
 
-* Commits to main branch deploy directly to the app, so test before you push
-* Launch a local streamlit app with *streamlit run app.py*
+* Sometimes it works to hard-code any number of if-else-then conditions, but this requires an explicit declaration of each relationship and outcome
+* Instead, with knowledge represetation and reasoning, we specify a knowledge base of facts and rules, then allow the system to reason for the right answer
+* In this project, we specify types of contracts and types of contract goals but allow a system to reason that any particular repository extends certain types of terms and conditions
+* In addition to having greater flexibility, the knowledge base can return an audit trail of why it produces an answer  
 
 ## The App
 
